@@ -85,9 +85,9 @@
 - [x] Add Extent Report support
 - [x] Use Cucumber @Tags to categorize Test Scenarios into @SmokeTest and @RegressionTest
 - [x] Read constants and globals from Constants.java or a .properties file
+- [x] Add build to Travis CI.
 
 ### Pending
-- [ ] Add build to Travis CI.
 - [ ] Add more Test scenarios and negative checks and failed TCs.
 - [ ] Add more descriptive comments.
 - [ ] Export json and extent reports to S3 buckets.
@@ -107,8 +107,6 @@
 ## REPORT SCREENS
 
 ![Dashboard-All](/screenshots/Dashboard-All.png)
-
-![Dashboard-Failed](/screenshots/Dashboard-Failed.png)
 
 ![TestGroups](/screenshots/TestGroups.png)
 

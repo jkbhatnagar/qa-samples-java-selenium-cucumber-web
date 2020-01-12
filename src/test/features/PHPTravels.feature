@@ -1,7 +1,7 @@
 Feature: PHPTravels Web Portal Book Hotel
 
 	@RegressionTest
-  	Scenario: Load Home page and specify hotels search criteria
+  	Scenario: Load Home page and check Home page elements
 		Given I open a browser and launch the application
 		When I am on Home page
 		Then Home page elements are displayed
@@ -19,7 +19,7 @@ Feature: PHPTravels Web Portal Book Hotel
 		And I click Search button
 
 	@RegressionTest @SmokeTest
-	Scenario: Load Home page and specify hotels search criteria
+	Scenario: Search hotels and check List page elements
 		Given I open a browser and launch the application
 		When I am on Home page
 		And I select Hotels tab
