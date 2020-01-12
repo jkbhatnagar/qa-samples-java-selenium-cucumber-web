@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,29 +15,51 @@ import java.util.List;
 
 public class HomePage {
 
+    WebDriver _driver;
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        _driver = driver;
     }
 
     String pageTitle = "PHPTRAVELS | Travel Technology Partner";
 
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Destination']")
+    private WebElement hotelsTabLabel;
+
     @FindBy(how = How.CSS, using = "nav[class=\"menu-horizontal-02\"] a[data-name=\"hotels\"]")
     private WebElement hotelsTabLink;
+
+
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Destination']")
+    private WebElement hotelsDestinationLabel;
 
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] div.locationlistTravelhopeHotels a")
     private WebElement hotelsDestinationBoxLink;
 
-    @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] div[class~=\"select2-drop\"][style*=\"display: block\"] div.select2-search input")
+    @FindBy(how = How.CSS, using = "div#select2-drop input.select2-input")
     private WebElement hotelsDestinationInput;
 
-    @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] div[class~=\"select2-drop\"][style*=\"display: block\"] > ul > li > ul > li:nth-of-type(1) > div")
+    @FindBy(how = How.CSS, using = "ul.select2-result-sub li:nth-of-type(1)")
     private WebElement hotelsDestinationFirsItemDiv;
+
+
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Check in']")
+    private WebElement hotelsCheckinDateLabel;
 
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] div#airDatepickerRange-hotel input#checkin")  //15/01/2020
     private WebElement hotelsCheckinDateInput;
 
+
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Check out']")
+    private WebElement hotelsCheckoutDateLabel;
+
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] div#airDatepickerRange-hotel input#checkout")    //16/01/2020
-    private WebElement hotelsCheckinDateOutput;
+    private WebElement hotelsCheckoutDateInput;
+
+
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Adults ']")
+    private WebElement hotelsAdultsLabel;
 
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] input[name=\"adults\"]")
     private WebElement hotelsAdultsInput;
@@ -47,6 +70,10 @@ public class HomePage {
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] input[name=\"adults\"]+span button.bootstrap-touchspin-down")
     private WebElement hotelsAdultsSpinnerDown;
 
+
+    @FindBy(how = How.XPATH, using = "//form[@name=\"HOTELS\"]//*[text()='Child ']")
+    private WebElement hotelsChildLabel;
+
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] input[name=\"children\"]")
     private WebElement hotelsChildrenInput;
 
@@ -56,11 +83,25 @@ public class HomePage {
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] input[name=\"children\"]+span button.bootstrap-touchspin-down")
     private WebElement hotelsChildrenSpinnerDown;
 
+
     @FindBy(how = How.CSS, using = "form[name=\"HOTELS\"] button[type=\"submit\"]")
     private WebElement hotelsSubmitButton;
 
+    public Boolean check_page_title() {
+        return _driver.getTitle().equals(pageTitle);
+    }
+
+    public Boolean check_hotelsTabLink() {
+        return hotelsTabLink.isDisplayed() && hotelsTabLink.getText().equals("HOTELS");
+    }
+
     public void click_hotelsTabLink() {
         hotelsTabLink.click();
+    }
+
+
+    public Boolean check_hotelsDestinationLabel() {
+        return hotelsDestinationLabel.isDisplayed();
     }
 
     public void click_hotelsDestinationBoxLink() {
@@ -69,54 +110,72 @@ public class HomePage {
 
     public void enter_DestinationCity(String city) {
         hotelsDestinationInput.sendKeys(city);
-    }
-
-    public void click_hotelsDestinationFirsItemDiv() {
         hotelsDestinationFirsItemDiv.click();
     }
 
+    public Boolean check_hotelsCheckinDateLabel() {
+        return hotelsCheckinDateLabel.isDisplayed();
+    }
+
     public void enter_CheckInDate(String date) {
+        hotelsCheckinDateInput.clear();
         hotelsCheckinDateInput.sendKeys(date);
+        sleep(2);
+    }
+
+
+    public Boolean check_hotelsCheckoutDateLabel() {
+        return hotelsCheckoutDateLabel.isDisplayed();
     }
 
     public void enter_CheckOutDate(String date) {
-        hotelsCheckinDateInput.sendKeys(date);
+        hotelsCheckoutDateInput.clear();
+        hotelsCheckoutDateInput.sendKeys(date);
+    }
+
+
+    public Boolean check_hotelsAdultsLabel() {
+        return hotelsAdultsLabel.isDisplayed();
     }
 
     public void set_hotelsAdultsCount(Integer count) {
-        Integer currentCount = Integer.parseInt(hotelsAdultsInput.getText());
-
-        if(!currentCount.equals(currentCount)){
-            for (int i = 0; i < currentCount; i++) {
-                hotelsAdultsSpinnerDown.click();
-            }
-
-            for (int i = 0; i < count; i++) {
-                hotelsAdultsSpinnerUp.click();
-            }
+        for (int i = 0; i < 10; i++) {
+            hotelsAdultsSpinnerDown.click();
         }
+
+        for (int i = 0; i < count; i++) {
+            hotelsAdultsSpinnerUp.click();
+        }
+        sleep(2);
+
+    }
+
+    public Boolean check_hotelsChildLabel() {
+        return hotelsChildLabel.isDisplayed();
     }
 
     public void set_hotelsChildrenCount(Integer count) {
-        Integer currentCount = Integer.parseInt(hotelsChildrenInput.getText());
-
-        if(!currentCount.equals(currentCount)){
-            for (int i = 0; i < currentCount; i++) {
-                hotelsChildrenSpinnerDown.click();
-            }
-
-            for (int i = 0; i < count; i++) {
-                hotelsChildrenSpinnerUp.click();
-            }
+        for (int i = 0; i < 10; i++) {
+            hotelsChildrenSpinnerDown.click();
         }
+
+        for (int i = 0; i < count; i++) {
+            hotelsChildrenSpinnerUp.click();
+        }
+        sleep(2);
     }
 
     public void click_hotelsSubmitButton() {
         hotelsSubmitButton.click();
-        try { Thread.sleep(3000);}
-        catch (InterruptedException e) {}
+        sleep(2);
     }
 
-
+    private void sleep(Integer seconds){
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

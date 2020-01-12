@@ -9,8 +9,11 @@ import org.openqa.selenium.support.ui.Select;
 
 public class HotelBookingPage {
 
+    WebDriver _driver;
+
     public HotelBookingPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        _driver = driver;
     }
 
     String pageTitle = "Hotels Booking Checkout";

@@ -43,15 +43,18 @@ public class HotelsListPage {
     @FindBy(how = How.CSS, using = "button#loadMore")
     private WebElement hotelsLoadMoreButton;
 
-    public Boolean check_PageTitle() {
+    public Boolean check_page_title() {
+        System.out.println("START : check_page_title");
         return _driver.getTitle().equals(pageTitle);
     }
 
     public Integer check_hotelsListItemsCount() {
+        System.out.println("START : check_hotelsListItemsCount");
         return hotelsListItems.size();
     }
 
     public Boolean check_hotelItemImgIsNotEmpty() {
+        System.out.println("START : check_hotelItemImgIsNotEmpty");
         return !hotelItemImg.getAttribute("src").equals("");
     }
 

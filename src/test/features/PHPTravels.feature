@@ -1,8 +1,35 @@
-Feature: Weatherbit weather api for current weather
+Feature: PHPTravels Web Portal Book Hotel
 
-	@SmokeTest @RegressionTest
-  	Scenario: get current weather data using correct coordinates for Sydney
-		Given I have set response type to json
-		And I have APIKEY
-		When I request Weatherbit weather api for current weather
-		Then the status code is 200
+	@RegressionTest
+  	Scenario: Load Home page and specify hotels search criteria
+		Given I open a browser and launch the application
+		When I am on Home page
+		Then Home page elements are displayed
+
+	@RegressionTest
+	Scenario: Load Home page and specify hotels search criteria
+		Given I open a browser and launch the application
+		When I am on Home page
+		And I select Hotels tab
+		And I enter destination city "Sydney"
+		And I enter checkin date "20/01/2020"
+		And I enter checkout date "21/01/2020"
+		And I set Adults count 2
+		And I set Child count 2
+		And I click Search button
+
+	@SmokeTest
+	Scenario: Load Home page and specify hotels search criteria
+		Given I open a browser and launch the application
+		When I am on Home page
+		And I select Hotels tab
+		And I enter destination city "Sydney"
+		And I enter checkin date "20/01/2020"
+		And I enter checkout date "21/01/2020"
+		And I set Adults count 2
+		And I set Child count 2
+		And I click Search button
+		And Hotels List page has finished loading
+		Then the hotel list has more than 5 hotels
+		And the first hotel item has all required fields
+
