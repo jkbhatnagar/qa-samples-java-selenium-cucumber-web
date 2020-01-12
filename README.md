@@ -91,6 +91,8 @@
 - [ ] Add more Test scenarios and negative checks and failed TCs.
 - [ ] Add more descriptive comments.
 - [ ] Export json and extent reports to S3 buckets.
+- [ ] Clear cookies
+- [ ] Add screenshots for execution and attach to report
 - [ ] Use cucumber-picocontainer to add Dependency Injection to share in-flight test objects between test cases
 - [ ] Split Step definition and feature for different services to separate files
 - [ ] Add assertion failure comments (if required)
@@ -103,6 +105,11 @@
         http://www.thinkcode.se/blog/2017/04/01/sharing-state-between-steps-in-cucumberjvm-using-picocontainer
 
 - Move common tasks and assertions to utility class
+
+### DEFECTS FOUND
+- [ ] When form is incomplete, click on search starts animation on Search button, but it never end. Every button click add a new animation icon.
+- [ ] Search functionality is submitted even when adults and kids count is 0
+- [ ] Labels above Adults and Child input fields should mentions (2-12 years) and (13-75 years)
 
 ## REPORT SCREENS
 
