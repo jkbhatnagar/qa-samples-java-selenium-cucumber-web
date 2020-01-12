@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,6 +23,7 @@ import pages.HomePage;
 import pages.HotelBookingPage;
 import pages.HotelsDetailsPage;
 import pages.HotelsListPage;
+import utils.UtilConstants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,15 +36,29 @@ public class StepsBase {
     HotelsListPage listPage;
     HotelsDetailsPage detailsPage;
     HotelBookingPage bookingPage;
+//    static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>();
 
     // region StepsBase
 
     @Given("I open a browser and launch the application")
-    public void open_a_browser_and_launch_the_application() throws Throwable
+    public void open_a_browser_and_launch_the_application() throws MalformedURLException
     {
         try {
             if(System.getProperty("exemode").equals("remote")) {
-                throw new PendingException("Remote DC not implemented");
+                if(System.getProperty("browser").equals("firefox")){
+                    System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver");
+                    DesiredCapabilities dc = DesiredCapabilities.firefox();
+                    dc.setBrowserName("firefox");
+                    dc.setPlatform(Platform.LINUX);
+                    driver = new RemoteWebDriver(new URL(UtilConstants.ENDPOINT_SELENIUM_HUB), dc);
+                }
+                else if(System.getProperty("browser").equals("chrome")){
+                    System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+                    DesiredCapabilities dc = DesiredCapabilities.chrome();
+                    dc.setBrowserName("chrome");
+                    dc.setPlatform(Platform.LINUX);
+                    driver = new RemoteWebDriver(new URL(UtilConstants.ENDPOINT_SELENIUM_HUB), dc);
+                }
             }
             else{
                 if(System.getProperty("browser").equals("firefox")){
@@ -55,11 +71,12 @@ public class StepsBase {
                 }
             }
 
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-
-            driver.get(ENDPOINT_PHPTRAVELS);
+            if(driver!=null){
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                //driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+                driver.get(ENDPOINT_PHPTRAVELS);
+            }
         }
         catch(Exception e){
             e.printStackTrace();
@@ -76,11 +93,6 @@ public class StepsBase {
     @When("I wait for 3 seconds")
     public void wait_for_3_seconds() throws Throwable {
         driver.wait(3000);
-    }
-
-    @Then("quit browser")
-    public void quit_browser(){
-        driver.quit();
     }
 
     // endregion

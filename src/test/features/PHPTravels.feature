@@ -18,7 +18,7 @@ Feature: PHPTravels Web Portal Book Hotel
 		And I set Child count 2
 		And I click Search button
 
-	@SmokeTest
+	@RegressionTest @SmokeTest
 	Scenario: Load Home page and specify hotels search criteria
 		Given I open a browser and launch the application
 		When I am on Home page
