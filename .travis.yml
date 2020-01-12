@@ -1,3 +1,16 @@
 language: java
 sudo: false
-script: ./mvnw clean test -Dcucumber.options="--tags @RegressionTest --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:output --glue stepdefs"  -Dbrowser=chrome
+
+dist: xenial
+
+services:
+  - docker
+  - xvfb
+
+before_script:
+  - sleep 3
+
+script:
+  - docker-compose up -d
+  - sleep 3
+  - ./mvnw clean test -Dcucumber.options="--tags @SmokeTest --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:output --glue stepdefs" -Dbrowser=chrome -Dexemode=remote
