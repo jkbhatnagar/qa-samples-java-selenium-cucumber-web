@@ -13,4 +13,4 @@ before_script:
 script:
   - docker-compose up -d
   - sleep 3
-  - ./mvnw clean test -Dcucumber.options="--tags @SmokeTest --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:output --glue stepdefs" -Dbrowser=chrome -Dexemode=remote
+  - ./mvnw clean test -Dcucumber.options="--tags @RegressionTest --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:output --glue stepdefs" -Dbrowser=chrome -Dexemode=remote

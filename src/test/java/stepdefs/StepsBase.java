@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -143,13 +144,24 @@ public class StepsBase {
         homePage.click_hotelsSubmitButton();
     }
 
+    @When("I select Hotels tab and search hotels for {string} from {string} to {string} for {int} adults")
+    public void homepage_i_search_for_hotels_on_home_page(String city, String checkinDate, String checkoutDate, Integer adults) {
+        homePage.click_hotelsTabLink();
+        homePage.click_hotelsDestinationBoxLink();
+        homePage.enter_DestinationCity(city);
+        homePage.enter_CheckInDate(checkinDate);
+        homePage.enter_CheckOutDate(checkoutDate);
+        homePage.set_hotelsAdultsCount(adults);
+        homePage.click_hotelsSubmitButton();
+    }
+
     @Then("Home page elements are displayed")
     public void homepage_verify_elements(){
-        homePage.check_hotelsDestinationLabel();
-        homePage.check_hotelsCheckinDateLabel();
-        homePage.check_hotelsCheckoutDateLabel();
-        homePage.check_hotelsAdultsLabel();
-        homePage.check_hotelsChildLabel();
+        Assert.assertTrue("Home Page : Destination label not as expected", homePage.check_hotelsDestinationLabel());
+        Assert.assertTrue("Home Page : Check in label not as expected", homePage.check_hotelsCheckinDateLabel());
+        Assert.assertTrue("Home Page : Check out label not as expected", homePage.check_hotelsCheckoutDateLabel());
+        Assert.assertTrue("Home Page : Adults label not as expected", homePage.check_hotelsAdultsLabel());
+        Assert.assertTrue("Home Page : Child label not as expected", homePage.check_hotelsChildLabel());
     }
 
     //endregion
@@ -172,40 +184,95 @@ public class StepsBase {
 
     @Then("the hotel list has more than {int} hotels")
     public void verify_hotel_list_count(int count){
-        Assert.assertTrue("Hotel count less than expected", (listPage.check_hotelsListItemsCount() >= count));
+        Assert.assertTrue("List Page : Hotel count less than expected", (listPage.check_hotelsListItemsCount() >= count));
     }
 
     @Then("the first hotel item has all required fields")
     public void verify_hotel_has_required_fields(){
-        Assert.assertTrue("Hotel count less than expected", listPage.check_hotelItemImgIsNotEmpty());
-        Assert.assertTrue("Hotel count less than expected", listPage.check_hotelsItemRatingSpanIsNotEmpty());
-        Assert.assertTrue("Hotel count less than expected", listPage.check_hotelsItemPriceSpanIsNotEmpty());
-        Assert.assertTrue("Hotel count less than expected", listPage.check_hotelsItemHotelNameH5IsNotEmpty());
+        Assert.assertTrue("List Page : Hotel Image not as expected", listPage.check_hotelItemImgIsNotEmpty());
+        Assert.assertTrue("List Page : Hotel Rating not as expected", listPage.check_hotelsItemRatingSpanIsNotEmpty());
+        Assert.assertTrue("List Page : Hotel Price not as expected", listPage.check_hotelsItemPriceSpanIsNotEmpty());
+        Assert.assertTrue("List Page : Hotel Name not as expected", listPage.check_hotelsItemHotelNameH5IsNotEmpty());
     }
 
     //endregion
 
 
 
-    // region protected classes
+    // Hotels Details Page
 
-    protected void scrollToElement(WebElement element) throws Throwable {
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView();", element);
+    @When("Hotels Details page has finished loading")
+    public void detailspage_i_am_on_details_page() {
+        detailsPage = new HotelsDetailsPage(driver);
+        detailsPage.check_page_title();
     }
 
-    protected void scrollToBottom() throws Throwable {
-        ((JavascriptExecutor) driver)
-                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    @When("I click Book Now button")
+    public void detailspage_click_book_now_button() {
+        detailsPage.click_hotelRoomItem1BookNowButton();
     }
 
-    // Value can be positive (scroll down) or negative (scroll up)
-    protected void scrollToCoordinate(Integer value) throws Throwable {
-        String scrollByStr = "window.scrollBy(0," + value + ")";
-        ((JavascriptExecutor) driver).executeScript(scrollByStr);
+    @Then("the Details page has more than {int} rooms")
+    public void detailspage_verify_hotel_room_count(int count){
+        Assert.assertTrue("Details Page : Room count less than expected", (detailsPage.get_hotelRoomItemsCount() >= count));
     }
 
-    // end region
+    @Then("the Details page has all required fields")
+    public void detailspage_verify_page_has_required_fields(){
+        Assert.assertTrue("Details Page : Hotel Name not as expected", detailsPage.check_hotelTitle());
+        Assert.assertTrue("Details Page : Hotel Rating not as expected", detailsPage.check_hotelItemRatingSpanIsNotEmpty());
+    }
+
+    //endregion
+
+
+
+
+    // Booking Page
+
+    @When("Hotels Booking page has finished loading")
+    public void bookingpage_i_am_on_booking_page() {
+        bookingPage = new HotelBookingPage(driver);
+        bookingPage.check_page_title();
+    }
+
+    @When("I enter first name {string} and last name {string}")
+    public void bookingpage_enter_name(String firstname, String lastname) {
+        bookingPage.enter_FirstName(firstname);
+        bookingPage.enter_LastName(lastname);
+    }
+
+    @When("I enter email {string} and phone {string}")
+    public void bookingpage_enter_email_and_phone(String email, String phone) {
+        bookingPage.enter_Email(email);
+        bookingPage.enter_PhoneNumber(phone);
+    }
+
+    @When("I select country {string}")
+    public void bookingpage_enter_email_and_phone(String country) {
+        bookingPage.enter_Country(country);
+    }
+
+    @When("I click Complete Booking button")
+    public void bookingpage_click_complete_booking_button() {
+        bookingPage.click_completeBookingButton();
+    }
+
+    @Then("the Booking page shows correct booking details")
+    public void bookingpage_verify_booking_details(){
+        //THIS IS SPECIAL -> WILL DEMO SHARING STATE BETWEEN TEST AND SCENARIOS
+    }
+
+    @Then("the Booking page has all required fields")
+    public void bookingpage_verify_page_has_required_fields(){
+        Assert.assertTrue("Booking Page : Last Name label not as expected", bookingPage.check_LastNameLabel());
+        Assert.assertTrue("Booking Page : Email label not as expected", bookingPage.check_EmailLabel());
+        Assert.assertTrue("Booking Page : Phone label  not as expected", bookingPage.check_PhoneLabel());
+        Assert.assertTrue("Booking Page : Country label not as expected", bookingPage.check_CountryLabel());
+    }
+
+    //endregion
+
 
     @After
     public void afterScenario()

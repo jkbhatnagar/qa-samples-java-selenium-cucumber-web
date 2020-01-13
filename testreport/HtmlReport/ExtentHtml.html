@@ -53,7 +53,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 13, 2020 04:45:26 am</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 13, 2020 03:48:34 pm</span>
 			</a>
 		</ul>
 	</div>
@@ -80,6 +80,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
+					<li><a href='#'>@RegressionTest</a></li>
 					<li><a href='#'>@SmokeTest</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
@@ -151,7 +152,7 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>13</span> step(s) passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>10</span> step(s) passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> scenario(s) failed, 
@@ -177,7 +178,7 @@
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>PHPTravels Web Portal Book Hotel</span>
-						<span class='test-time'>Jan 13, 2020 04:45:26 am</span>
+						<span class='test-time'>Jan 13, 2020 03:48:34 pm</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -189,11 +190,12 @@
 </div>
 <div class='scenario node' test-id='2' status='pass'>
     <div class='category-list'>
+        <span class='category label'>@RegressionTest</span>
         <span class='category label'>@SmokeTest</span>
     </div>
-    <span class='duration right label'>0h 0m 31s+259ms</span>
+    <span class='duration right label'>0h 0m 36s+420ms</span>
     <div class="bdd-test">
-        <div class="scenario-name"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span> Scenario: Load Home page and specify hotels search criteria</div>
+        <div class="scenario-name"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span> Scenario: Search hotels and select first room of first hotel and check Booking page elements</div>
     </div>
     <ul class='steps'>
         <li test-id='3' class='node given pass' status='pass'>
@@ -205,46 +207,34 @@
                 <div class="node-step"></div>
         </li>
         <li test-id='5' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_select_hotels_tab()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I select Hotels tab</div>
+            <div class="step-name" title="StepsBase.homepage_i_search_for_hotels_on_home_page(String,String,String,Integer)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I select Hotels tab and search hotels for "Sydney" from "20/01/2020" to "21/01/2020" for 2 adults</div>
                 <div class="node-step"></div>
         </li>
         <li test-id='6' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_select_destination_city(String)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I enter destination city "Sydney"</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='7' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_select_checkin_date(String)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I enter checkin date "20/01/2020"</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='8' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_select_checkout_date(String)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I enter checkout date "21/01/2020"</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='9' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_set_adults_count(Integer)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I set Adults count 2</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='10' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_set_children_count(Integer)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I set Child count 2</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='11' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.homepage_click_search_button()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I click Search button</div>
-                <div class="node-step"></div>
-        </li>
-        <li test-id='12' class='node and pass' status='pass'>
             <div class="step-name" title="StepsBase.listpage_i_am_on_list_page()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And Hotels List page has finished loading</div>
                 <div class="node-step"></div>
         </li>
-        <li test-id='13' class='node then pass' status='pass'>
-            <div class="step-name" title="StepsBase.verify_hotel_list_count(int)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Then the hotel list has more than 5 hotels</div>
+        <li test-id='7' class='node and pass' status='pass'>
+            <div class="step-name" title="StepsBase.listpage_click_details_button()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I click Details button</div>
                 <div class="node-step"></div>
         </li>
-        <li test-id='14' class='node and pass' status='pass'>
-            <div class="step-name" title="StepsBase.verify_hotel_has_required_fields()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And the first hotel item has all required fields</div>
+        <li test-id='8' class='node and pass' status='pass'>
+            <div class="step-name" title="StepsBase.detailspage_i_am_on_details_page()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And Hotels Details page has finished loading</div>
                 <div class="node-step"></div>
         </li>
-        <li test-id='15' class='node * pass' status='pass'>
+        <li test-id='9' class='node and pass' status='pass'>
+            <div class="step-name" title="StepsBase.detailspage_click_book_now_button()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And I click Book Now button</div>
+                <div class="node-step"></div>
+        </li>
+        <li test-id='10' class='node and pass' status='pass'>
+            <div class="step-name" title="StepsBase.bookingpage_i_am_on_booking_page()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And Hotels Booking page has finished loading</div>
+                <div class="node-step"></div>
+        </li>
+        <li test-id='11' class='node then pass' status='pass'>
+            <div class="step-name" title="StepsBase.bookingpage_verify_page_has_required_fields()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Then the Booking page has all required fields</div>
+                <div class="node-step"></div>
+        </li>
+        <li test-id='12' class='node * pass' status='pass'>
             <div class="step-name" title=""><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>StepsBase.afterScenario()</div>
                 <div class="node-step"></div>
         </li>
@@ -292,6 +282,39 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
+						<span class='category-name'>@RegressionTest</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 13, 2020 03:48:34 pm</td>
+										<td class='linked' test-id='2'>Search hotels and select first room of first hotel and check Booking page elements</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
 						<span class='category-name'>@SmokeTest</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
@@ -314,8 +337,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 13, 2020 04:45:26 am</td>
-										<td class='linked' test-id='2'>Load Home page and specify hotels search criteria</td>
+										<td>Jan 13, 2020 03:48:34 pm</td>
+										<td class='linked' test-id='2'>Search hotels and select first room of first hotel and check Booking page elements</td>
 										<td><span class='test-status pass'>pass</span></td>
 									</tr>
 								</tbody>
@@ -352,25 +375,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>13</div>
+					<div class='panel-lead'>10</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 13, 2020 04:45:26 am</div>
+					<div class='panel-lead'>Jan 13, 2020 03:48:34 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 13, 2020 04:45:57 am</div>
+			 		<div class='panel-lead'>Jan 13, 2020 03:49:10 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 0m 31s+420ms</div>
+					<div class='panel-lead'>0h 0m 36s+583ms</div>
 				</div>
 			</div>
 			<div class='col s6'>
@@ -384,6 +407,15 @@
 							<th>Failed</th>
 							<th>Skipped</th>
 							<th>Passed %</th>
+						</tr>
+						<tr>
+							<td>@RegressionTest</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
 						</tr>
 						<tr>
 							<td>@SmokeTest</td>
@@ -423,8 +455,8 @@
 				infoChild: 0,
 				debugChild: 0,
 				exceptionsChild: 0,
-				grandChildCount: 13,
-				passGrandChild: 13,
+				grandChildCount: 10,
+				passGrandChild: 10,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -437,7 +469,7 @@
 		</script>
 		<script>
 			var timeline = {
-			        "PHPTravels Web Portal Book Hotel":31.259
+			        "PHPTravels Web Portal Book Hotel":36.42
 			};
 		</script>
 	

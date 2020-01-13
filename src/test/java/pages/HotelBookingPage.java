@@ -7,9 +7,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class HotelBookingPage {
-
-    WebDriver _driver;
+public class HotelBookingPage extends BasePage {
 
     public HotelBookingPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -30,26 +28,30 @@ public class HotelBookingPage {
     @FindBy(how = How.CSS, using = "input#last_name")
     private WebElement guestLastNameInput;
 
-    @FindBy(how = How.CSS, using = "label[for=\"email\"]")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] label[for=\"email\"]")
     private WebElement guestEmailLabel;
 
-    @FindBy(how = How.CSS, using = "input#email")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] input#email")
     private WebElement guestEmailInput;
 
-    @FindBy(how = How.CSS, using = "label[for=\"phone_number\"]")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] label[for=\"phone_number\"]")
     private WebElement guestPhoneNumberLabel;
 
-    @FindBy(how = How.CSS, using = "input#phone_number")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] input#phone_number")
     private WebElement guestPhoneNumberInput;
 
-    @FindBy(how = How.CSS, using = "label[for=\"country_code\"]")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] label[for=\"country_code\"]")
     private WebElement guestCountryLabel;
 
-    @FindBy(how = How.CSS, using = "select#country_code")
+    @FindBy(how = How.CSS, using = "form[name=\"bookingForm\"] select#country_code")
     private Select guestCountrySelect;
 
     @FindBy(how = How.CSS, using = "form[action=\"https://www.phptravels.net/thhotels/pay\"]:nth-of-type(2) button")
     private WebElement completeBookingButton;
+
+    public Boolean check_page_title() {
+        return _driver.getTitle().equals(pageTitle);
+    }
 
 //    public Boolean check_FirstNameLabel() {
 //        return guestFirstNameLabel.getText().equals("First Name");
@@ -91,10 +93,9 @@ public class HotelBookingPage {
         guestCountrySelect.selectByVisibleText(country);
     }
 
-    public void click_hotelsTabLink() {
+    public void click_completeBookingButton() {
         completeBookingButton.click();
-        try { Thread.sleep(3000);}
-        catch (InterruptedException e) {}
+        sleep(3);
     }
 
 }

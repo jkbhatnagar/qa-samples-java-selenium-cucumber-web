@@ -13,13 +13,11 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomePage {
-
-    WebDriver _driver;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        _driver = driver;
+        this._driver = driver;
     }
 
     String pageTitle = "PHPTRAVELS | Travel Technology Partner";
@@ -168,14 +166,6 @@ public class HomePage {
     public void click_hotelsSubmitButton() {
         hotelsSubmitButton.click();
         sleep(2);
-    }
-
-    private void sleep(Integer seconds){
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }

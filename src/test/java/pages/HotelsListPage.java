@@ -8,9 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class HotelsListPage {
-
-    WebDriver _driver;
+public class HotelsListPage extends BasePage {
 
     public HotelsListPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -44,17 +42,14 @@ public class HotelsListPage {
     private WebElement hotelsLoadMoreButton;
 
     public Boolean check_page_title() {
-        System.out.println("START : check_page_title");
         return _driver.getTitle().equals(pageTitle);
     }
 
     public Integer check_hotelsListItemsCount() {
-        System.out.println("START : check_hotelsListItemsCount");
         return hotelsListItems.size();
     }
 
     public Boolean check_hotelItemImgIsNotEmpty() {
-        System.out.println("START : check_hotelItemImgIsNotEmpty");
         return !hotelItemImg.getAttribute("src").equals("");
     }
 
