@@ -1,12 +1,12 @@
 # Web Automation - Java - Selenium - Cucumber - Extent Reports
 
-[![Build Status](https://travis-ci.com/jkbhatnagar/ql_web_auto-proj.svg?branch=develop)](https://travis-ci.com/jkbhatnagar/ql_web_auto-proj)
+[![Build Status](https://travis-ci.com/jkbhatnagar/qa-samples-java-selenium-cucumber-web.svg?branch=develop)](https://travis-ci.com/jkbhatnagar/qa-samples-java-selenium-cucumber-web)
 
 ## USAGE
 
 ### Travis CI Builds
 
-    https://travis-ci.com/jkbhatnagar/ql_web_auto-proj
+    https://travis-ci.com/jkbhatnagar/qa-samples-java-selenium-cucumber-web
     
 
 ### Run Locally:
